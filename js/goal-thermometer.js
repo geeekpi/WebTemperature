@@ -118,16 +118,7 @@ function createGraphics(){
 	var countPerTick = goalAmount/tickMarkSegementCount;
 	var commaSepCountPerTick = commaSeparateNumber(countPerTick);
 	
-	//add the number
-	for ( var i = 0; i < tickMarkSegementCount; i++ ) {
-		
-		var yPos = tickHeight * i + numberStartY;
-		var style = $("<style>.pos" + i + " { top: " + yPos + "px; width:"+widthOfNumbers+"px }</style>");
-		$("html > head").append(style);
-		var dollarText = commaSeparateNumber(goalAmount - countPerTick * i);
-		$( numbersDiv ).append( "<div class='therm-number pos" + i + "'>" +dollarText+ "</div>" );
-		
-	}
+
 	
 	//check that the images are loaded before anything
 	arrayOfImages = new Array( "#therm-top", "#therm-body-bg", "#therm-body-mercury", "#therm-bottom", ".tip-left", ".tip-right");
