@@ -25,7 +25,7 @@ fi
 sudo raspi-config nonint do_i2c 0 
 
 # python module installation
-# echo $user_pwd | sudo -S apt-get update
+echo $user_pwd | sudo -S apt-get update
 echo $user_pwd | sudo -S apt-get install git
 echo $user_pwd | sudo -S pip install bottle
 
