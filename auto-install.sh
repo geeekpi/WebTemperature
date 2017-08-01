@@ -1,4 +1,6 @@
 #!/bin/bash
+project_name='WebTemperature'
+dir_base=`pwd`
 
 function info {
 	echo -e "\e[1;36m$1\e[0m"
@@ -30,11 +32,11 @@ echo $user_pwd | sudo -S pip install bottle
 info "\nPython Module Installed"
 
 # git clone here
-git clone https://github.com/geekpi/WebTemperature.git
+git clone https://github.com/geeekpi/WebTemperature.git
 info "\ngit cloned"
 
 # complie the C code to binary
-gcc -o ntc ntc.c -lm -O3
+gcc -o ntc $project_name/ntc.c -lm -O3
 
 # nginx configuration
 echo $user_pwd | sudo -S apt-get install nginx
@@ -48,7 +50,7 @@ server {
         server_name _;
 
         location / {
-		root /home/pi/WebTemprature;
+		root $dir_base/$project_name;
 		index index.html index.htm index.nginx-debian.html;
         }
         location /data {
@@ -66,7 +68,7 @@ else
 fi
 
 # start data collection 
-python main.py > /dev/null 2>&1 &
+python $project_name/main.py > /dev/null 2>&1 &
 
 # get IP address
 myIP=`ifconfig wlan0 | awk '/inet addr/{print substr($2,6)}'`
